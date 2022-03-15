@@ -1,9 +1,18 @@
 import React from "react";
 
-export const Tile = () => {
+export const Tile = (props) => {
+ const {value} = props;
+  const array  = Object.values(value);
   return (
     <div className="tile-container">
-      
+      {
+        array.map((data,index) => {
+        if(index == 0){
+          return <p className="tile-title" key={index}>{data}</p>
+        }
+          return <p className="title" key={index}>{data}</p>
+        })
+      }
     </div>
   );
 };
