@@ -10,15 +10,15 @@ export const ContactForm = (props) => {
     handleSubmit} = props;
 
     const handleNameChange = (e) =>{
-      setName(e.target.value)
+      setName(e.target.value);
     }
 
     const handlePhoneChange = (e) =>{
-      setPhone(e.target.value)
+      setPhone(e.target.value);
     }
 
     const handleEmailChange = (e) =>{
-      setEmail(e.target.value)
+      setEmail(e.target.value);
     }
   return (
     <div>
