@@ -33,18 +33,28 @@ export const ContactsPage = ({addContacts, contacts}) => {
   contacts array variable in props
   */
  useEffect(() => {
-   for (let contact of contacts){
-     name === contact.name ? setDuplicate(true): setDuplicate(false)
-   }
-   return () => {
+  const nameIsDuplicate = () => {
+    const found = contacts.find((contact) => contact.name === name);
+    if (found !== undefined) {
+      return true;
+    }
+    return false;
+  };
+
+  if (nameIsDuplicate()) {
+    setDuplicate(true);
+  } else {
     setDuplicate(false);
-   }
- },[contacts]);
+  }
+}, [name, contacts, duplicate]);
  
   return (
     <div>
       <section>
-        <h2>Add Contact</h2> 
+        <h2>
+          Add Contact
+          {duplicate? "- Name already exists -" : ""}
+          </h2> 
         <ContactForm
           name = {name}
           email = {email}

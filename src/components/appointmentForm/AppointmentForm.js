@@ -37,20 +37,20 @@ const getTodayString = () => {
   };
 
   return (
-    <div>
       <form onSubmit={handleSubmit}>
         <label>Title</label>
-        <input type="text" value={title} onChange={handleTitleChange}></input>
+        <input type="text" name="title" value={title} onChange={handleTitleChange}></input>
         <label>Date</label>
-        <input type="date" value={date} min={getTodayString()} onChange={handleDateChange}></input>
+        <input type="date" name="date" value={date} min={getTodayString()} onChange={handleDateChange}></input>
         <label>Time</label>
-        <input type="time" value={time} onChange={handleTimeChange}></input>
+        <input type="time" name="time" value={time} onChange={handleTimeChange}></input>
         <ContactPicker 
+         name="contact"
         contacts={GetContactName}
         value ={contact}
-        onChange={(e) => setContact(e.target.value)} />
-        <button type="submit" value="submit"></button>
+        onChange={(e) => setContact(e.target.value)}
+        placeholder="Appointment With" />
+        <input type="submit" value="submit"></input>
       </form>
-    </div>
   );
 };

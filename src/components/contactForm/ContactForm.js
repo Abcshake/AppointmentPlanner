@@ -24,13 +24,32 @@ export const ContactForm = (props) => {
     <div>
       <form onSubmit={handleSubmit}>
         <label>Name</label>
-        <input type="text" value={name} onChange={handleNameChange}></input>
+        <input
+         type="text"
+         value={name}
+         name="name"
+         onChange={handleNameChange}
+         required
+         placeholder = "Contact name">
+        </input>
 
         <label>Phone</label>
-        <input type="tel" value={phone} onChange={handlePhoneChange}></input>
+        <input
+         type="tel"
+         value={phone}
+         onChange={handlePhoneChange}
+         required
+         placeholder = "Contact phone number">
+        </input>
 
         <label>Email</label>
-        <input type="email" value={email} onChange={handleEmailChange}></input>
+        <input
+         type="email"
+         value={email}
+         onChange={handleEmailChange}
+         required
+         placeholder="Contact email">
+         </input>
 
         <input type="submit" value="submit"></input>
       </form>

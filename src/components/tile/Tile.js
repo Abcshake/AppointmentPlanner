@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Tile = ({ tile }) => {
+export const Tile = ({ list }) => {
   return (
     <div className="tile-container">
-      {Object.values(tile).map((value, index) => (
+      {Object.values(list).map((value, index) => (
         <p key={index} className={`${index === 0 ? "tile-title" : ""} tile`}>
           {value}
         </p>

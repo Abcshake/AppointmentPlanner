@@ -1,15 +1,18 @@
 import React from "react";
 
-export const ContactPicker = (props) => {
-
-  const {contact, contacts} = props
-
-
+export const ContactPicker = ({name, onChange, contacts}) => {
   return (
-    <select>
-      <option selected="selected">Select a Contact</option>
-      {contacts.map((value, key) => <option value={contact} key={contact}></option>
-      )}
-    </select>  
+    <select name={name} onChange={onChange}>
+      <option value={""} key={-1} selected="selected">
+        No Contact Selected
+      </option>
+      {Object.keys(contacts).map((contact) => {
+        return (
+          <option value={contact} key={contact}>
+            {contact} 
+          </option>
+        );
+      })}
+    </select>
   );
 };
