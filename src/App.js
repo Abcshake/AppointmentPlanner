@@ -27,9 +27,9 @@ function App() {
   ]);
 };
 
-  const addAppointments = (title,contact,time) => {
+  const addAppointments = (title,contact,date,time) => {
     setAppointment([
-      appointments, {title,contact,time},
+      appointments, {title,contact,date, time},
     ]);
   };
 

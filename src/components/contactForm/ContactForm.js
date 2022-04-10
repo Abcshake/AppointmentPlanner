@@ -20,6 +20,8 @@ export const ContactForm = (props) => {
     const handleEmailChange = (e) =>{
       setEmail(e.target.value);
     }
+    console.log(name);
+
   return (
     <div>
       <form onSubmit={handleSubmit}>

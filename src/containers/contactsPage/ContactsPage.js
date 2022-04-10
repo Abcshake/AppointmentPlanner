@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {ContactForm} from "../../components/contactForm/ContactForm";
 import {TileList} from "../../components/tileList/TileList";
 
-export const ContactsPage = ({addContacts, contacts}) => {
+export const ContactsPage = (props) => {
   /*
   Define state variables for 
   contact info and duplicate check
@@ -21,7 +21,7 @@ export const ContactsPage = ({addContacts, contacts}) => {
     if the contact name is not a duplicate
     */
    if(!duplicate){
-     addContacts(name,phone,email);
+     props.addContacts(name,phone,email);
      setName('');
      setPhone('');
      setEmail('');
@@ -34,19 +34,22 @@ export const ContactsPage = ({addContacts, contacts}) => {
   */
  useEffect(() => {
   const nameIsDuplicate = () => {
-    const found = contacts.find((contact) => contact.name === name);
+    const found = props.contacts.find((contact) => contact.name === name);
     if (found !== undefined) {
       return true;
+    } else {
+      return false;
     }
-    return false;
   };
 
-  if (nameIsDuplicate()) {
+  if (nameIsDuplicate()===true) {
     setDuplicate(true);
   } else {
     setDuplicate(false);
   }
-}, [name, contacts, duplicate]);
+  console.log(nameIsDuplicate());
+}, [name,duplicate,props.contacts]);
+console.log(props.contacts);
  
   return (
     <div>
@@ -68,7 +71,7 @@ export const ContactsPage = ({addContacts, contacts}) => {
       <section>
         <h2>Contacts</h2>
         <TileList
-          list={contacts}
+          list={props.contacts}
         />
       </section>
     </div>
