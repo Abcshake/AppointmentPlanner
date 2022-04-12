@@ -8,10 +8,11 @@ export const AppointmentsPage = (props) => {
   Define state variables for 
   appointment info
   */
- const {appointments,addAppointments} = props;
  const [title, setTitle] = useState('');
- const [contact, setContact] = useState('');
- const [date, setDate] = useState(new Date());
+ const [contact, setContact] = useState(
+  props.contacts.length > 0 ? props.contacts[0].name : ""
+ );
+ const [date, setDate] = useState('');
  const [time, setTime] = useState('');
 
 
@@ -20,7 +21,11 @@ export const AppointmentsPage = (props) => {
     /*
     Add contact info and clear data  
     */
-    addAppointments(title,contact,date,time);
+    props.addAppointments(title,contact,date,time);
+    setTitle("");
+    setContact("");
+    setDate("");
+    setTime("");
    
   };
 
@@ -29,6 +34,7 @@ export const AppointmentsPage = (props) => {
       <section>
         <h2>Add Appointment</h2>
         <AppointmentForm
+          contacts = {props.contacts}
           title={title}
           setTitle={setTitle}
           contact={contact}
@@ -43,7 +49,7 @@ export const AppointmentsPage = (props) => {
       <hr />
       <section>
         <h2>Appointments</h2>
-        <TileList list={appointments} />
+        <TileList list={props.appointments} />
       </section>
     </div>
   );

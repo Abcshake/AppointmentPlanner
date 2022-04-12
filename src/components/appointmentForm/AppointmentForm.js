@@ -11,7 +11,7 @@ const {
   setDate,
   time,
   setTime,
-  handleSubmit
+  onSubmit
 } = props;
 const getTodayString = () => {
   const [month, day, year] = new Date()
@@ -33,19 +33,38 @@ const getTodayString = () => {
   };
 
   const GetContactName = () => {
-    return contacts.map(contact => contact.name);
+    return contacts.map((contact) => contact.name);
   };
+  console.log(contact.name);
 
   return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <label>Title</label>
-        <input type="text" name="title" value={title} onChange={handleTitleChange}></input>
+        <input
+         type="text"
+         name="title"
+         value={title}
+         required
+         onChange={handleTitleChange}>
+        </input>
         <label>Date</label>
-        <input type="date" name="date" value={date} min={getTodayString()} onChange={handleDateChange}></input>
+        <input 
+         type="date"
+         name="date"
+         value={date}
+         min={getTodayString()}
+         onChange={handleDateChange}
+         required>
+        </input>
         <label>Time</label>
-        <input type="time" name="time" value={time} onChange={handleTimeChange}></input>
+        <input type="time"
+         name="time"
+         value={time}
+         onChange={handleTimeChange}
+         required>
+        </input>
         <ContactPicker 
-         name="contact"
+        name="contact"
         contacts={GetContactName}
         value ={contact}
         onChange={(e) => setContact(e.target.value)}

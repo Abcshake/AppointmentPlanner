@@ -7,7 +7,7 @@ export const ContactForm = (props) => {
     setPhone,
     email,
     setEmail,
-    handleSubmit} = props;
+    onSubmit} = props;
 
     const handleNameChange = (e) =>{
       setName(e.target.value);
@@ -20,11 +20,11 @@ export const ContactForm = (props) => {
     const handleEmailChange = (e) =>{
       setEmail(e.target.value);
     }
-    console.log(name);
+  
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <label>Name</label>
         <input
          type="text"

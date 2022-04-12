@@ -27,7 +27,6 @@ export const ContactsPage = (props) => {
      setEmail('');
    }
   };
-
   /*
   Using hooks, check for contact name in the 
   contacts array variable in props
@@ -47,9 +46,9 @@ export const ContactsPage = (props) => {
   } else {
     setDuplicate(false);
   }
-  console.log(nameIsDuplicate());
+  
 }, [name,duplicate,props.contacts]);
-console.log(props.contacts);
+
  
   return (
     <div>

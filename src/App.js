@@ -23,13 +23,22 @@ function App() {
   */
   const addContacts = (name,phone,email) => { 
   setContacts([
-    contacts, {name,phone,email},
+    ...contacts, {
+      name: name,
+      phone: phone,
+      email: email,
+    },
   ]);
 };
 
   const addAppointments = (title,contact,date,time) => {
     setAppointment([
-      appointments, {title,contact,date, time},
+      ...appointments, {
+        title: title,
+        contact: contact,
+        date: date,
+        time: time,
+      },
     ]);
   };
 
@@ -58,7 +67,8 @@ function App() {
             {/* Add props to AppointmentsPage */}
             <AppointmentsPage
               addAppointments={addAppointments}
-              appointments={appointments} />
+              appointments={appointments}
+              contacts={contacts} />
           </Route>
         </Switch>
       </main>

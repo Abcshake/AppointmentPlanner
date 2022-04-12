@@ -1,11 +1,9 @@
 import React from "react";
 
-export const Tile = (props) => {
- const object = props.info;
- const values =  Object.values(object);
-  
- console.log(values);
- const info = values.map((value, index) => {
+export const Tile = ({tile}) => {
+
+
+ const info = Object.values(tile).map((value, index) => {
   let className;
   if (index === 0) {
     className='tile-title';
@@ -15,7 +13,7 @@ export const Tile = (props) => {
   return <p key={index} className={className} >{value}</p>
   
 });
- console.log(info);
+ 
 
 
 return (
