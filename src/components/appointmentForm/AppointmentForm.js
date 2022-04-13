@@ -65,7 +65,7 @@ const getTodayString = () => {
         </input>
         <ContactPicker 
         name="contact"
-        contacts={GetContactName}
+        contacts={GetContactName()}
         value ={contact}
         onChange={(e) => setContact(e.target.value)}
         placeholder="Appointment With" />
