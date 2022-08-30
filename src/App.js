@@ -11,8 +11,9 @@ function App() {
   */
  const [contacts, setContacts] = useState([]);
  const [appointments, setAppointment] = useState([]);
- 
-  const ROUTES = {
+ const [data, setData] = useState([]);
+
+   const ROUTES = {
     CONTACTS: "/contacts",
     APPOINTMENTS: "/appointments",
   };
