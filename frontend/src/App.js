@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 
@@ -24,6 +24,17 @@ function App() {
   */
 
   //potential place to add express get route for contacts and appointments
+
+  useEffect(() => {
+    async function fetchContacts() {
+       
+      const response = await fetch('http://localhost:5000/api/contacts');
+        const json = await response.json();
+        console.log(json);
+        setContacts([...contacts, json[0]]);
+    }
+    fetchContacts();
+  }, []);
 
   const addContacts = (name,phone,email) => { 
   setContacts([

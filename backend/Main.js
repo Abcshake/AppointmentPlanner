@@ -11,7 +11,7 @@ const cors = require('cors');
 app.use(cors({ origin: 'http://localhost:3000'}));
 app.get('/api/contacts', (req,res) => {
     const contacts = [
-        {name: 'John Doe', phone: 4584624623, email: 'john.doe@gmail.com'}
+        {name: 'John Doe', phone: 4584624623, email: 'john.doe@gmail.com'},
     ];
     res.json(contacts);
 });
