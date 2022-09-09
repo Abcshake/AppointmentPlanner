@@ -27,11 +27,10 @@ function App() {
 
   useEffect(() => {
     async function fetchContacts() {
-       
       const response = await fetch('http://localhost:5000/api/contacts');
         const json = await response.json();
         console.log(json);
-        setContacts([...contacts, json[0]]);
+        setContacts([...contacts, json[2]]);
     }
     fetchContacts();
   }, []);

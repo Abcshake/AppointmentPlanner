@@ -1,20 +1,20 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-//const path = require('path');
+const pool = require('./db/index');
 
-// app.use(express.static(path.join(__dirname, 'build')));
-
-// app.get('/', (req,res) => {
-//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
 app.use(cors({ origin: 'http://localhost:3000'}));
-app.get('/api/contacts', (req,res) => {
-    const contacts = [
-        {name: 'John Doe', phone: 4584624623, email: 'john.doe@gmail.com'},
-    ];
-    res.json(contacts);
+app.get('/api/contacts', (request,response,next) => {
+    pool.query('SELECT * FROM contacts', (err, res) => {
+        if (err) return next(err);
+    
+        response.json(res.rows);
+    });
 });
+
+app.use((err,req,res,next) => {
+    res.json(err);
+})
 
 const port = 5000;
 
