@@ -26,6 +26,22 @@ export const ContactsPage = (props) => {
      setPhone('');
      setEmail('');
    }
+   //fetch request 
+   const data = { name, phone, email };
+   fetch('http://localhost:5000/api/contacts', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(data)
+      }).then(() => {
+        console.log({name,phone,email})
+      }).catch(error => {
+        // handle network errors
+        console.error(error);
+      });
   };
   /*
   Using hooks, check for contact name in the 

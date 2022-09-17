@@ -1,7 +1,7 @@
 CREATE TABLE contacts(
     name character varying(50),
-    email varchar,
-    phone int
+    phone bigint,
+    email varchar
 );
 
 CREATE TABLE appointments(
@@ -11,7 +11,7 @@ CREATE TABLE appointments(
     time TIME(0)
 );
 
-INSERT INTO contacts(name,email,phone) 
+INSERT INTO contacts(name,phone,email) 
 VALUES
-('Fred', 'fredhampton@bp.com', 478565925),
-('Huey', 'hueynewton@bp.com', 452565925);
+('Fred', 4521284569, 'fredhampton@bp.com'),
+('Huey', 4525659256, 'hueynewton@bp.com' );
