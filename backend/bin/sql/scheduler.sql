@@ -6,9 +6,10 @@ CREATE TABLE contacts(
 
 CREATE TABLE appointments(
     id serial,
-    contact character varying(50),
+    title character varying(50),
     date DATE,
-    time TIME(0)
+    time TIME(0),
+    contact character varying(50)
 );
 
 INSERT INTO contacts(name,phone,email) 

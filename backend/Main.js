@@ -13,6 +13,13 @@ app.get('/api/contacts', (request,response,next) => {
         response.json(res.rows);
     });
 });
+app.get('/api/appointments', (request,response,next) => {
+    pool.query('SELECT * FROM appointments', (err, res) => {
+        if (err) return next(err);
+    
+        response.json(res.rows);
+    });
+});
 
 app.post('/api/contacts', (request, response, next) => {
     const { name, email, phone } = request.body;
@@ -23,6 +30,19 @@ app.post('/api/contacts', (request, response, next) => {
             (err, res) => {
                 if (err) return next(err);
                 response.redirect('/api/contacts');
+            }
+    );
+});
+
+app.post('/api/appointments', (request, response, next) => {
+    const { title, date, time, contact } = request.body;
+    
+    pool.query(
+        'INSERT INTO appointments(title, date, time, contact) VALUES($1, $2, $3, $4)',
+        [title,date,time,contact],
+            (err, res) => {
+                if (err) return next(err);
+                response.redirect('/api/appointments');
             }
     );
 });
