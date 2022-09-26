@@ -34,6 +34,15 @@ function App() {
     
     }
     fetchContacts();
+
+    async function fetchAppointments() {
+      const response = await fetch('http://localhost:5000/api/appointments');
+        const json = await response.json();
+        console.log(json);
+        setAppointment(json);
+    
+    }
+    fetchAppointments();
   }, []);
 
   const addContacts = (name,phone,email) => { 

@@ -10,7 +10,12 @@ export const Tile = ({tile}) => {
   } else {
     className='tile'
   }
-  return <p key={index} className={className} >{value}</p>
+  return (
+    <div>
+      <p key={index} className={className} >{value}</p>
+    </div>
+
+  ) 
   
 });
  

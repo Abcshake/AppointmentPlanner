@@ -26,8 +26,25 @@ export const AppointmentsPage = (props) => {
     setContact("");
     setDate("");
     setTime("");
+    /* Post Request */
+    const data = { title,contact,date,time };
+    fetch('http://localhost:5000/api/appointments', {
+         method: 'POST',
+         mode: 'cors',
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(data)
+       }).then(() => {
+         console.log({title,contact,date,time})
+       }).catch(error => {
+         // handle network errors
+         console.error(error);
+       });
    
   };
+
 
   return (
     <div>

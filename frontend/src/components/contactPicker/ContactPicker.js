@@ -3,7 +3,7 @@ import React from "react";
 export const ContactPicker = ({name, onChange, contacts}) => {
 
   return (
-    <select name={name} onChange={onChange}>
+    <select name={name} onChange={onChange} required>
       <option value={""} key={-1} selected="selected">
         No Contact Selected
       </option>
