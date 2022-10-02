@@ -47,6 +47,15 @@ app.post('/api/appointments', (request, response, next) => {
     );
 });
 
+app.delete('/api/contacts/:id', (request, response, next) => {
+    const { id } = request.params;
+
+    pool.query('DELETE FROM contacts WHERE name = ($1)', [id], (err,res) => {
+        if (err) return next(err);
+        response.redirect('/api/contacts');
+    });
+});
+
 app.use((err,req,res,next) => {
     res.json(err);
 })

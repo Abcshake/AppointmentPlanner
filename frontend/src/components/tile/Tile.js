@@ -1,14 +1,15 @@
 import React from "react";
 
-export const Tile = ({tile}) => {
+export const Tile = ({tile,onDelete}) => {
 
-const handleUpdate = {
-
+const handleDelete = async() => {
+  let id = tile.name;
+  await fetch(`http://localhost:5000/api/contacts/${id}`, {
+      method: "DELETE",
+    });
+    onDelete(id);
 }
 
-const handleDelete = {
-    
-}
 
 
  const info = Object.values(tile).map((value, index) => {
@@ -32,7 +33,7 @@ return (
   <div className="tile-container">
     <React.Fragment>
     {info}
-    <button onClick={handleUpdate}>Update</button>
+    <button>Update</button>
     <button onClick={handleDelete}>Delete</button>
     </React.Fragment>
   </div>

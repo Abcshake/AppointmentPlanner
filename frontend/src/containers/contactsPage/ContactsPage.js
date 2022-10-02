@@ -87,6 +87,7 @@ export const ContactsPage = (props) => {
         <h2>Contacts</h2>
         <TileList
           list={props.contacts}
+          onDelete={props.onDelete}
         />
       </section>
     </div>

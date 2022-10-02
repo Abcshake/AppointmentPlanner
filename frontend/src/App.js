@@ -69,6 +69,10 @@ function App() {
     ]);
   };
 
+  const handleDelete = name => {
+    setContacts(contacts => contacts.filter(contact => contact.name !== name));
+  }
+
   return (
     <>
       <nav>
@@ -88,6 +92,7 @@ function App() {
              {/* Add props to ContactsPage */}
             <ContactsPage
               addContacts={addContacts}
+              onDelete={handleDelete}
               contacts={contacts} />
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
