@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, NavLink } from "react-router-dom";
 import { useState,useEffect } from "react";
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
+import { UpdateContactForm } from "./components/updateForm/updateContactForm";
 
 function App() {
   /*
@@ -16,6 +17,7 @@ function App() {
    const ROUTES = {
     CONTACTS: "/contacts",
     APPOINTMENTS: "/appointments",
+    UPDATE: "/update/:name"
   };
 
   /*
@@ -73,6 +75,19 @@ function App() {
     setContacts(contacts => contacts.filter(contact => contact.name !== name));
   }
 
+  const handleUpdateContact = (name, phone, email) => {
+    const newState = contacts.map(obj => {
+      if(obj.name === contacts.name){
+        return {...contacts,
+           name:name,
+           phone:phone,
+           email:email
+          }
+      }
+    });
+    setContacts(newState);
+  }
+
   return (
     <>
       <nav>
@@ -101,6 +116,10 @@ function App() {
               addAppointments={addAppointments}
               appointments={appointments}
               contacts={contacts} />
+          </Route>
+          <Route path={ROUTES.UPDATE}>
+            <UpdateContactForm
+             updateContactForm={handleUpdateContact} />
           </Route>
         </Switch>
       </main>

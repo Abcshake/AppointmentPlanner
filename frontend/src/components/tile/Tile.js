@@ -1,13 +1,16 @@
 import React from "react";
+import { NavLink } from 'react-router-dom';
+
 
 export const Tile = ({tile,onDelete}) => {
 
 const handleDelete = async() => {
   let id = tile.name;
+  onDelete(id);
   await fetch(`http://localhost:5000/api/contacts/${id}`, {
       method: "DELETE",
     });
-    onDelete(id);
+    
 }
 
 
@@ -33,8 +36,10 @@ return (
   <div className="tile-container">
     <React.Fragment>
     {info}
-    <button>Update</button>
     <button onClick={handleDelete}>Delete</button>
+    <NavLink to={`/update/${tile.name}`}>
+      Update
+    </NavLink>
     </React.Fragment>
   </div>
 );
