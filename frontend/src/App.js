@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect, NavLink } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState,useEffect  } from "react";
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 import { UpdateContactForm } from "./components/updateForm/updateContactForm";
@@ -12,12 +12,12 @@ function App() {
   */
  const [contacts, setContacts] = useState([]);
  const [appointments, setAppointment] = useState([]);
-
+ const [query, setQuery] = useState({});
 
    const ROUTES = {
     CONTACTS: "/contacts",
     APPOINTMENTS: "/appointments",
-    UPDATE: "/update/:name"
+    UPDATE: "/update/"
   };
 
   /*
@@ -31,7 +31,6 @@ function App() {
     async function fetchContacts() {
       const response = await fetch('http://localhost:5000/api/contacts');
         const json = await response.json();
-        console.log(json);
         setContacts(json);
     
     }
@@ -40,7 +39,6 @@ function App() {
     async function fetchAppointments() {
       const response = await fetch('http://localhost:5000/api/appointments');
         const json = await response.json();
-        console.log(json);
         setAppointment(json);
     
     }
@@ -75,18 +73,21 @@ function App() {
     setContacts(contacts => contacts.filter(contact => contact.name !== name));
   }
 
-  const handleUpdateContact = (name, phone, email) => {
+  const handleUpdate = (obj) => {
     const newState = contacts.map(obj => {
       if(obj.name === contacts.name){
         return {...contacts,
-           name:name,
-           phone:phone,
-           email:email
+           name: obj.name,
+           phone: obj.phone,
+           email: obj.email
           }
       }
     });
     setContacts(newState);
-  }
+    };
+   
+  
+
 
   return (
     <>
@@ -108,7 +109,8 @@ function App() {
             <ContactsPage
               addContacts={addContacts}
               onDelete={handleDelete}
-              contacts={contacts} />
+              contacts={contacts}
+              onQuery={setQuery} />
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
             {/* Add props to AppointmentsPage */}
@@ -119,12 +121,14 @@ function App() {
           </Route>
           <Route path={ROUTES.UPDATE}>
             <UpdateContactForm
-             updateContactForm={handleUpdateContact} />
+             contact={query}
+             onUpdate={handleUpdate}
+              />
           </Route>
         </Switch>
       </main>
     </>
   );
-}
 
+  }
 export default App;

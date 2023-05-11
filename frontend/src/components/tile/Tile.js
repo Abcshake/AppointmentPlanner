@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
+import { useEffect  } from "react";
 
-
-export const Tile = ({tile,onDelete}) => {
+export const Tile = ({tile,onDelete, onQuery}) => {
 
 const handleDelete = async() => {
   let id = tile.name;
@@ -13,6 +13,11 @@ const handleDelete = async() => {
     
 }
 
+useEffect(() => {
+  onQuery({name: tile.name,
+           phone: tile.phone,
+           email: tile.email})
+})
 
 
  const info = Object.values(tile).map((value, index) => {
@@ -37,7 +42,7 @@ return (
     <React.Fragment>
     {info}
     <button onClick={handleDelete}>Delete</button>
-    <NavLink to={`/update/${tile.name}`}>
+    <NavLink to={`/update/`}>
       Update
     </NavLink>
     </React.Fragment>

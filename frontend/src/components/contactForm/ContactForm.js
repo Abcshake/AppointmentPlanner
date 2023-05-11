@@ -1,6 +1,6 @@
 import React from "react";
 
-//potential entry point for post express route for contacts
+//potential entry point for post express route for contacts - not its got
 
 export const ContactForm = (props) => {
   const {name,

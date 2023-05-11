@@ -37,12 +37,11 @@ export const ContactsPage = (props) => {
          },
          body: JSON.stringify(data)
        }).then(() => {
-         console.log({name,phone,email})
        }).catch(error => {
          // handle network errors
-         console.error(error);
        });
   };
+
   /*
   Using hooks, check for contact name in the 
   contacts array variable in props
@@ -88,6 +87,7 @@ export const ContactsPage = (props) => {
         <TileList
           list={props.contacts}
           onDelete={props.onDelete}
+          onQuery={props.onQuery}
         />
       </section>
     </div>

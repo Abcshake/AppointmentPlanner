@@ -1,46 +1,75 @@
 import React from "react";
+import { useState,useEffect  } from "react";
 
-export const UpdateContactForm = (tile,updateContactForm) => {
+export const UpdateContactForm = (props) => {
 
-    const handleUpdate = () => {
-        updateContactForm(tile.name,tile.phone,tile.phone);
-    }
+    const {contact, onUpdate} = props;
+    const [tempContacts, setTempContacts] = useState(contact);
+    const [change, setChange] = useState(false);
+    
+    useEffect(() => {
+        console.log('contact', contact);
+        console.log('tempContact', tempContacts);
+        onUpdate(tempContacts);
+    })
 
-    // const handleNameChange = (e) => {
-    //     tile.name = e.target.value;
-    // }
-    // const handlePhoneChange = (e) => {
-    //     tile.phone = e.target.value;
-    // }
-    // const handleEmailChange = (e) => {
-    //     tile.email = e.target.value
-    // }
+
+      const handleUpdateContact = (e) => {
+        e.preventDefault();
+        onUpdate(tempContacts);
+      }
+    
 
 
     return (
-        <form onSubmit={handleUpdate}>
+        <form >
             <label>Name</label>
             <input
             type="text"
             name="Name"
-            value={tile.name}
+            value={tempContacts.name}
+            onChange={(e) => {
+                setChange(true); 
+                setTempContacts({...tempContacts, name: e.target.value})}
+            }
             required>
             </input>
             <label>Phone</label>
             <input
             type="text"
             name="Phone"
-            value={tile.phone}
+            value={tempContacts.phone}
+            onChange={(e) => {
+                setChange(true); 
+                setTempContacts({...tempContacts, phone: e.target.value})}
+            }
             required>
             </input>
             <label>Email</label>
             <input
             type="text"
             name="Email"
-            value={tile.email}
+            value={tempContacts.email}
+            onChange={(e) => {
+                setChange(true); 
+                setTempContacts({...tempContacts, email: e.target.value})}
+            }
             required>
             </input>
-            <input type="submit" value="submit"></input>
+            { change ? (
+                <>
+                <button
+                    onClick={() => {
+                    setTempContacts({...contact})
+                    setChange(false)
+                }}
+                >
+                    Cancel
+                </button>
+                <button
+                    onClick={handleUpdateContact}>Save</button>
+                </>
+            ) : null}
         </form>
     );
 };
