@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import { useEffect  } from "react";
-
+import { useHistory } from 'react-router-dom';
 export const Tile = ({tile,onDelete, onQuery}) => {
-
+const history = useHistory();
 const handleDelete = async() => {
   let id = tile.name;
   onDelete(id);
@@ -13,11 +13,25 @@ const handleDelete = async() => {
     
 }
 
+const handleUpdate = () => {
+  history.push('/update/')
+}
+
 useEffect(() => {
-  onQuery({name: tile.name,
-           phone: tile.phone,
-           email: tile.email})
-})
+  if(tile.hasOwnProperty('title')){  
+  onQuery({
+          title: tile.title,
+          contact: tile.contact,
+           date: tile.date,
+           time: tile.time})
+  } else {
+  onQuery({
+            id: tile.id,
+            name: tile.name,
+             phone: tile.phone,
+             email: tile.email})
+  }
+},[tile])
 
 
  const info = Object.values(tile).map((value, index) => {
@@ -42,9 +56,7 @@ return (
     <React.Fragment>
     {info}
     <button onClick={handleDelete}>Delete</button>
-    <NavLink to={`/update/`}>
-      Update
-    </NavLink>
+    <button onClick={handleUpdate}>Update</button>
     </React.Fragment>
   </div>
 );

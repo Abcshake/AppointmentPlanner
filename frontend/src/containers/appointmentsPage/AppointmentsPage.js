@@ -66,7 +66,9 @@ export const AppointmentsPage = (props) => {
       <hr />
       <section>
         <h2>Appointments</h2>
-        <TileList list={props.appointments} />
+        <TileList 
+          list={props.appointments}
+          onQuery={props.onQuery} />
       </section>
     </div>
   );

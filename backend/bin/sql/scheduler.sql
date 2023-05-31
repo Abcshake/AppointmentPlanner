@@ -1,4 +1,5 @@
 CREATE TABLE contacts(
+    id serial,
     name character varying(50),
     phone bigint,
     email varchar

@@ -27,35 +27,35 @@ function App() {
 
   //potential place to add express get route for contacts and appointments
 
-  useEffect(() => {
-    async function fetchContacts() {
-      const response = await fetch('http://localhost:5000/api/contacts');
-        const json = await response.json();
-        setContacts(json);
+  // useEffect(() => {
+  //   async function fetchContacts() {
+  //     const response = await fetch('http://localhost:5000/api/contacts');
+  //       const json = await response.json();
+  //       setContacts(json);
     
-    }
-    fetchContacts();
+  //   }
+  //   fetchContacts();
 
-    async function fetchAppointments() {
-      const response = await fetch('http://localhost:5000/api/appointments');
-        const json = await response.json();
-        setAppointment(json);
+  //   async function fetchAppointments() {
+  //     const response = await fetch('http://localhost:5000/api/appointments');
+  //       const json = await response.json();
+  //       setAppointment(json);
     
-    }
-    fetchAppointments();
-  }, []);
+  //   }
+  //   fetchAppointments();
+  // }, []);
 
   const addContacts = (name,phone,email) => { 
       //const data = {name, phone, email};
       
-    setContacts([
-    ...contacts, {
+    const newContact =  {
+      id: contacts.length + 1,
       name: name,
       phone: phone,
       email: email,
-    },
-  ]);
-  
+    };
+    setContacts((prevContacts) => [...prevContacts, newContact]);
+   
 };
 
   const addAppointments = (title,contact,date,time) => {
@@ -67,24 +67,35 @@ function App() {
         time: time,
       },
     ]);
+    console.log(query);
   };
 
   const handleDelete = name => {
     setContacts(contacts => contacts.filter(contact => contact.name !== name));
   }
 
-  const handleUpdate = (obj) => {
-    const newState = contacts.map(obj => {
-      if(obj.name === contacts.name){
-        return {...contacts,
-           name: obj.name,
-           phone: obj.phone,
-           email: obj.email
-          }
-      }
-    });
-    setContacts(newState);
-    };
+  const handleUpdate = (newObject) => {
+    let index = null;
+    
+    if (newObject.hasOwnProperty('name')) {
+      index = contacts.findIndex(obj => obj.id === newObject.id);
+      const newStateArray = [...contacts];
+      newStateArray[index] = newObject; 
+      setContacts(newStateArray);
+    } else {
+      index = appointments.findIndex(obj => obj.id === newObject.id);
+      const newStateArray = [...appointments];
+      newStateArray[index] = newObject;
+      setAppointment(newStateArray);
+    }
+    
+    if (index === -1) {
+      // If the object with the specified name is not found, return without making any changes
+      return;
+    }
+  
+    
+  };
    
   
 
@@ -117,12 +128,14 @@ function App() {
             <AppointmentsPage
               addAppointments={addAppointments}
               appointments={appointments}
-              contacts={contacts} />
+              contacts={contacts}
+              onQuery={setQuery} />
           </Route>
           <Route path={ROUTES.UPDATE}>
             <UpdateContactForm
              contact={query}
              onUpdate={handleUpdate}
+             contacts={contacts}
               />
           </Route>
         </Switch>

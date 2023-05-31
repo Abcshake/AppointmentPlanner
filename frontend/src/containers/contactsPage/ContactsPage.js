@@ -27,19 +27,19 @@ export const ContactsPage = (props) => {
      setEmail('');
     }
     //Post request 
-    const data = { name, phone, email };
-    fetch('http://localhost:5000/api/contacts', {
-         method: 'POST',
-         mode: 'cors',
-         headers: {
-           'Accept': 'application/json',
-           'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(data)
-       }).then(() => {
-       }).catch(error => {
-         // handle network errors
-       });
+    // const data = { name, phone, email };
+    // fetch('http://localhost:5000/api/contacts', {
+    //      method: 'POST',
+    //      mode: 'cors',
+    //      headers: {
+    //        'Accept': 'application/json',
+    //        'Content-Type': 'application/json'
+    //      },
+    //      body: JSON.stringify(data)
+    //    }).then(() => {
+    //    }).catch(error => {
+    //      // handle network errors
+    //    });
   };
 
   /*
