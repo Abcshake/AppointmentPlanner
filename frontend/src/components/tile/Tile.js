@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from 'react-router-dom';
 import { useEffect  } from "react";
 import { useHistory } from 'react-router-dom';
 export const Tile = ({tile,onDelete, onQuery}) => {

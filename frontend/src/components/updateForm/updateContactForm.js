@@ -2,16 +2,35 @@ import React from "react";
 import { useState  } from "react";
 import { ContactPicker} from "../contactPicker/ContactPicker";
 import { ConditionalButtons } from "./ConditionalButtons";
+import { useHistory } from 'react-router-dom';
+
 export const UpdateContactForm = (props) => {
 
     const {contact, onUpdate, contacts} = props;
     const [temp, setTemp] = useState(contact);
     const [change, setChange] = useState(false);
+    const history = useHistory();
       const handleUpdateContact = (e) => {
         e.preventDefault();
         onUpdate(temp);
-        console.log('Temp contact', temp);
-        console.log('Updated contact', contacts);
+        // console.log('Temp contact', temp);
+        // console.log('Updated contact', contacts);
+        history.goBack();
+        fetch('http://localhost:5000/api/appointments', {
+         method: 'PUT',
+         mode: 'cors',
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(temp)
+       }).then((temp) => {
+         console.log(temp)
+       }).catch(error => {
+         // handle network errors
+         console.error(error);
+       });
+
       }
       const GetContactName = () => {
         return contacts.map((contact) => contact.name);
