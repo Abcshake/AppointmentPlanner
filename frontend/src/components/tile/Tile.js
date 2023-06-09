@@ -1,14 +1,16 @@
 import React from "react";
 import { useEffect  } from "react";
 import { useHistory } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 export const Tile = ({tile,onDelete, onQuery}) => {
 const history = useHistory();
 const handleDelete = async() => {
   let id = tile.name;
   onDelete(id);
-  await fetch(`http://localhost:5000/api/contacts/${id}`, {
-      method: "DELETE",
-    });
+  // await fetch(`http://localhost:5000/api/contacts/${id}`, {
+  //     method: "DELETE",
+  //   });
     
 }
 
@@ -42,9 +44,9 @@ useEffect(() => {
   }
 
   return (
-    <div>
-      <p key={index} className={className} >{value}</p>
-    </div>
+   <div>
+     <p key={index} className={className} >{value}</p>
+   </div>
   ) 
 });
  
@@ -53,9 +55,20 @@ useEffect(() => {
 return (
   <div className="tile-container">
     <React.Fragment>
-    {info}
-    <button onClick={handleDelete}>Delete</button>
-    <button onClick={handleUpdate}>Update</button>
+    <Container maxWidth="lg" justifyContent="center">
+    <Box 
+        display="flex" 
+        flexDirection="column"
+        width={500} height={200} 
+        bgcolor="#cfe8fc"
+        justifyContent="center"
+        sx={{ p: 2, border: '1px solid' }}
+    >
+      {info}
+      <button onClick={handleDelete}>Delete</button>
+      <button onClick={handleUpdate}>Update</button>
+    </Box>
+    </Container>
     </React.Fragment>
   </div>
 );

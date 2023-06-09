@@ -4,6 +4,9 @@ import { useState,useEffect  } from "react";
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 import { UpdateContactForm } from "./components/updateForm/updateContactForm";
+import Box from '@mui/material/Box';
+import RestoreIcon from '@mui/icons-material/Restore';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function App() {
   /*
@@ -103,12 +106,16 @@ function App() {
   return (
     <>
       <nav>
+      <Box sx={{ bgcolor: '#cfe8fc' }}>
         <NavLink to={ROUTES.CONTACTS} activeClassName="active">
           Contacts
         </NavLink>
+        <FavoriteIcon />
         <NavLink to={ROUTES.APPOINTMENTS} activeClassName="active">
           Appointments
         </NavLink>
+        <RestoreIcon />
+      </Box> 
       </nav>
       <main>
         <Switch>
