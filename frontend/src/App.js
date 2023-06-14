@@ -5,6 +5,7 @@ import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 import { UpdateContactForm } from "./components/updateForm/updateContactForm";
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
@@ -73,9 +74,13 @@ function App() {
     console.log(query);
   };
 
-  const handleDelete = name => {
-    setContacts(contacts => contacts.filter(contact => contact.name !== name));
+  const handleDelete = tile => {
+    if (tile.hasOwnProperty('name')) {
+        setContacts(contacts => contacts.filter(contact => contact.name !== tile.name));
+  } else {
+    setAppointment(appointments => appointments.filter(app => app.title !== tile.title))
   }
+}
 
   const handleUpdate = (newObject) => {
     let index = null;
@@ -106,15 +111,22 @@ function App() {
   return (
     <>
       <nav>
-      <Box sx={{ bgcolor: '#cfe8fc' }}>
+      <Box sx={{ bgcolor: '#cfe8fc',  p: 2, border: '1px solid' }}
+        display="flex" 
+        justifyContent='center'
+       >
+        <Container>
         <NavLink to={ROUTES.CONTACTS} activeClassName="active">
           Contacts
         </NavLink>
         <FavoriteIcon />
+        </Container>
+        <Container>
         <NavLink to={ROUTES.APPOINTMENTS} activeClassName="active">
           Appointments
         </NavLink>
         <RestoreIcon />
+        </Container>
       </Box> 
       </nav>
       <main>
@@ -134,6 +146,7 @@ function App() {
             {/* Add props to AppointmentsPage */}
             <AppointmentsPage
               addAppointments={addAppointments}
+              onDelete={handleDelete}
               appointments={appointments}
               contacts={contacts}
               onQuery={setQuery} />

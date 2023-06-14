@@ -68,6 +68,7 @@ export const AppointmentsPage = (props) => {
         <h2>Appointments</h2>
         <TileList 
           list={props.appointments}
+          onDelete={props.onDelete}
           onQuery={props.onQuery} />
       </section>
     </div>

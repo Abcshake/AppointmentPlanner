@@ -1,13 +1,19 @@
 import React from "react";
 import { useEffect  } from "react";
 import { useHistory } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 export const Tile = ({tile,onDelete, onQuery}) => {
 const history = useHistory();
+
+
 const handleDelete = async() => {
-  let id = tile.name;
-  onDelete(id);
+  onDelete(tile);
   // await fetch(`http://localhost:5000/api/contacts/${id}`, {
   //     method: "DELETE",
   //   });
@@ -53,23 +59,25 @@ useEffect(() => {
 
 
 return (
-  <div className="tile-container">
-    <React.Fragment>
-    <Container maxWidth="lg" justifyContent="center">
-    <Box 
-        display="flex" 
-        flexDirection="column"
-        width={500} height={200} 
-        bgcolor="#cfe8fc"
-        justifyContent="center"
-        sx={{ p: 2, border: '1px solid' }}
-    >
-      {info}
-      <button onClick={handleDelete}>Delete</button>
-      <button onClick={handleUpdate}>Update</button>
-    </Box>
-    </Container>
-    </React.Fragment>
+  <div className="tile-container"
+      display="flex"
+      justify-content="center">
+     <Card sx={{ maxWidth: 500 }}>
+      <CardMedia
+        sx={{ height: 140 }}
+        title="Contact"
+        src="./contact-svgrepo-com.svg"
+      />
+      <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          {info}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="medium" onClick={handleDelete}>Delete</Button>
+        <Button size="medium" onClick={handleUpdate}>Update</Button>
+      </CardActions>
+    </Card>
   </div>
 );
 };
