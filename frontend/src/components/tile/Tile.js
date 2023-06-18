@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
@@ -50,7 +49,9 @@ useEffect(() => {
   }
 
   return (
-   <div>
+   <div
+   display="flex"
+   justify-content="center">
      <p key={index} className={className} >{value}</p>
    </div>
   ) 
@@ -59,16 +60,9 @@ useEffect(() => {
 
 
 return (
-  <div className="tile-container"
-      display="flex"
-      justify-content="center">
-     <Card sx={{ maxWidth: 500 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        title="Contact"
-        src="./contact-svgrepo-com.svg"
-      />
-      <CardContent>
+  <div>
+      <Card sx={{ maxWidth: 500 }}>
+      <CardContent sx={{ bgcolor:'#cfe8fc' }}>
         <Typography variant="body2" color="text.secondary">
           {info}
         </Typography>
