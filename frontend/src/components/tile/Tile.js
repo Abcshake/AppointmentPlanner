@@ -6,6 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Grid } from "@mui/material";
 
 export const Tile = ({tile,onDelete, onQuery}) => {
 const history = useHistory();
@@ -49,9 +50,7 @@ useEffect(() => {
   }
 
   return (
-   <div
-   display="flex"
-   justify-content="center">
+   <div>
      <p key={index} className={className} >{value}</p>
    </div>
   ) 
@@ -61,17 +60,23 @@ useEffect(() => {
 
 return (
   <div>
-      <Card sx={{ maxWidth: 500 }}>
-      <CardContent sx={{ bgcolor:'#cfe8fc' }}>
-        <Typography variant="body2" color="text.secondary">
-          {info}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="medium" onClick={handleDelete}>Delete</Button>
-        <Button size="medium" onClick={handleUpdate}>Update</Button>
-      </CardActions>
-    </Card>
+    <Grid container direction="row" flexWrap="wrap">
+     {Object.values(tile).map((tile, index) => (
+      <Grid item key={index}>
+        <Card sx={{ maxWidth: 500 }}>
+        <CardContent sx={{ bgcolor:'#cfe8fc' }}>
+          <Typography variant="body2" color="text.secondary">
+            {tile}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="medium" onClick={handleDelete}>Delete</Button>
+          <Button size="medium" onClick={handleUpdate}>Update</Button>
+        </CardActions>
+        </Card>
+      </Grid>
+       ))}
+    </Grid>
   </div>
 );
 };

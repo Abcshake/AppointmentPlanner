@@ -6,8 +6,12 @@ import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 import { UpdateContactForm } from "./components/updateForm/updateContactForm";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import AppBar from '@mui/material/AppBar';
+import ToolBar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 function App() {
   /*
@@ -110,24 +114,17 @@ function App() {
 
   return (
     <>
-      <nav>
-      <Box sx={{ bgcolor: '#cfe8fc',  p: 2, border: '1px solid' }}
-        display="flex" 
-        justifyContent='center'
-       >
-        <Container>
-        <NavLink to={ROUTES.CONTACTS} activeClassName="active">
-          Contacts
-        </NavLink>
-        <FavoriteIcon />
+    <nav>
+      <AppBar position="relative">
+        <Container maxWidth="xl">
+          <ToolBar>
+            <Container sx={{display: "flex", justifyContent: "center"}}>
+              <Button startIcon={<Diversity3Icon />} variant="contained" href="/contacts">Contacts</Button>
+              <Button startIcon={<CalendarMonthIcon />} variant="contained" href="/appointments">Appointments</Button>
+            </Container>
+          </ToolBar>
         </Container>
-        <Container>
-        <NavLink to={ROUTES.APPOINTMENTS} activeClassName="active">
-          Appointments
-        </NavLink>
-        <RestoreIcon />
-        </Container>
-      </Box> 
+      </AppBar>
       </nav>
       <main>
         <Switch>
