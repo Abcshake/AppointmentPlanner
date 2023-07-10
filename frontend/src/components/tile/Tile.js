@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import Paper from "@mui/material/Paper";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
@@ -41,41 +42,26 @@ useEffect(() => {
 },[tile])
 
 
- const info = Object.values(tile).map((value, index) => {
-  let className;
-  if (index === 0) {
-    className='tile-title';
-  } else {
-    className='tile'
-  }
-
-  return (
-   <div>
-     <p key={index} className={className} >{value}</p>
-   </div>
-  ) 
-});
- 
-
-
 return (
   <div>
-    <Grid container direction="row" flexWrap="wrap">
-     {Object.values(tile).map((tile, index) => (
-      <Grid item key={index}>
-        <Card sx={{ maxWidth: 500 }}>
-        <CardContent sx={{ bgcolor:'#cfe8fc' }}>
-          <Typography variant="body2" color="text.secondary">
-            {tile}
-          </Typography>
-        </CardContent>
+    <Grid container 
+      direction="rows"
+      columns={{ xs: 4, sm: 4, md: 4 }}>
+      <Grid item container direction="column" >
+        <Grid item justifyContent="center">
+          <Card  xs={4}>
+            {Object.values(tile).map((tile) => (
+            <Typography variant="body2" key={tile.id}> 
+              {tile}
+            </Typography>
+            ))}
+          </Card>
+         </Grid> 
+      </Grid>
         <CardActions>
           <Button size="medium" onClick={handleDelete}>Delete</Button>
           <Button size="medium" onClick={handleUpdate}>Update</Button>
         </CardActions>
-        </Card>
-      </Grid>
-       ))}
     </Grid>
   </div>
 );

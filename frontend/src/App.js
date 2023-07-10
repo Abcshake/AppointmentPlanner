@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect, NavLink } from "react-router-dom";
+import { Switch, Route, Redirect, Link } from "react-router-dom";
 import { useState,useEffect  } from "react";
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
@@ -119,8 +119,8 @@ function App() {
         <Container maxWidth="xl">
           <ToolBar>
             <Container sx={{display: "flex", justifyContent: "center"}}>
-              <Button startIcon={<Diversity3Icon />} variant="contained" href="/contacts">Contacts</Button>
-              <Button startIcon={<CalendarMonthIcon />} variant="contained" href="/appointments">Appointments</Button>
+              <Button startIcon={<Diversity3Icon />} variant="contained" component={Link} to={ROUTES.CONTACTS}>Contacts</Button>
+              <Button startIcon={<CalendarMonthIcon />} variant="contained" component={Link} to={ROUTES.APPOINTMENTS}>Appointments</Button>
             </Container>
           </ToolBar>
         </Container>
