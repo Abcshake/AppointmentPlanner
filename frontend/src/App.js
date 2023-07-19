@@ -1,17 +1,17 @@
 import React from "react";
 import { Switch, Route, Redirect, Link } from "react-router-dom";
-import { useState,useEffect  } from "react";
+import { useState  } from "react";
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 import { UpdateContactForm } from "./components/updateForm/updateContactForm";
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import ToolBar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { ThemeProvider } from "@mui/material";
+import { Theme } from "./Theme";
 
 function App() {
   /*
@@ -105,23 +105,25 @@ function App() {
       // If the object with the specified name is not found, return without making any changes
       return;
     }
-  
+    
     
   };
-   
   
-
-
+  
+  
+  
   return (
     <>
     <nav>
       <AppBar position="relative">
         <Container maxWidth="xl">
           <ToolBar>
-            <Container sx={{display: "flex", justifyContent: "center"}}>
+            <ThemeProvider theme={Theme}>
+            <Container sx={{display: "flex", justifyContent: "center", color: "primary"}}>
               <Button startIcon={<Diversity3Icon />} variant="contained" component={Link} to={ROUTES.CONTACTS}>Contacts</Button>
               <Button startIcon={<CalendarMonthIcon />} variant="contained" component={Link} to={ROUTES.APPOINTMENTS}>Appointments</Button>
             </Container>
+            </ThemeProvider>
           </ToolBar>
         </Container>
       </AppBar>
@@ -137,7 +139,8 @@ function App() {
               addContacts={addContacts}
               onDelete={handleDelete}
               contacts={contacts}
-              onQuery={setQuery} />
+              onQuery={setQuery}
+               />
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
             {/* Add props to AppointmentsPage */}
@@ -153,7 +156,7 @@ function App() {
              contact={query}
              onUpdate={handleUpdate}
              contacts={contacts}
-              />
+             />
           </Route>
         </Switch>
       </main>

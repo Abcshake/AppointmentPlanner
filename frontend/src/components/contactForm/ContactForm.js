@@ -1,4 +1,7 @@
 import React from "react";
+import { ThemeProvider } from "@mui/material";
+import { Theme } from "../../Theme";
+import Button from '@mui/material/Button';
 
 //potential entry point for post express route for contacts - not its got
 
@@ -54,8 +57,9 @@ export const ContactForm = (props) => {
          required
          placeholder="Contact email">
          </input>
-
-        <input type="submit" value="submit"></input>
+        <ThemeProvider theme={Theme}>
+          <Button type="submit" value="submit"  variant="contained" fullWidth= "true" sx={{backgroundColor: "primary.main", color: "white"}}>Submit</Button>
+        </ThemeProvider>
       </form>
     </div>
   );

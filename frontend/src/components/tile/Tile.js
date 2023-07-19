@@ -3,11 +3,12 @@ import { useEffect  } from "react";
 import { useHistory } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Paper from "@mui/material/Paper";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
+import Container from '@mui/material/Container';
+import { ThemeProvider } from "@mui/material";
+import { Theme } from "../../Theme";
 
 export const Tile = ({tile,onDelete, onQuery}) => {
 const history = useHistory();
@@ -44,25 +45,24 @@ useEffect(() => {
 
 return (
   <div>
-    <Grid container 
-      direction="rows"
-      columns={{ xs: 4, sm: 4, md: 4 }}>
-      <Grid item container direction="column" >
-        <Grid item justifyContent="center">
-          <Card  xs={4}>
-            {Object.values(tile).map((tile) => (
-            <Typography variant="body2" key={tile.id}> 
-              {tile}
-            </Typography>
-            ))}
-          </Card>
-         </Grid> 
-      </Grid>
-        <CardActions>
-          <Button size="medium" onClick={handleDelete}>Delete</Button>
-          <Button size="medium" onClick={handleUpdate}>Update</Button>
-        </CardActions>
-    </Grid>
+    <Grid container direction="column">
+    <Container  sx={{gap: 2}}>
+    <ThemeProvider theme={Theme}>
+        <Card sx={{ backgroundColor: "primary.main" }}>
+        {Object.values(tile).map((tile) => (
+          <Typography variant="body2" >
+          {tile}
+        </Typography>
+      ))}
+        </Card>
+  <CardActions sx={{ backgroundColor: "primary.other" }}>
+    <Button size="medium" onClick={handleDelete}>Delete</Button>
+    <Button size="medium" onClick={handleUpdate}>Update</Button>
+  </CardActions>
+  </ThemeProvider>
+  </Container>
+</Grid>
+
   </div>
 );
 };
