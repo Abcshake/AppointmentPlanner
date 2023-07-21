@@ -1,5 +1,8 @@
 import React from "react";
 import { ContactPicker} from "../contactPicker/ContactPicker"
+import { ThemeProvider } from "@mui/material";
+import { Theme } from "../../Theme";
+import Button from '@mui/material/Button';
 //potential entry point for post express route for appointments
 export const AppointmentForm = (props) => {
 const {
@@ -70,7 +73,9 @@ const getTodayString = () => {
         value ={contact}
         onChange={(e) => setContact(e.target.value)}
         placeholder="Appointment With" />
-        <input type="submit" value="submit"></input>
+       <ThemeProvider theme={Theme}>
+          <Button type="submit" value="submit"  variant="contained" fullWidth= "true" sx={{backgroundColor: "primary.other", color: "white"}}>Submit</Button>
+        </ThemeProvider>
       </form>
   );
 };

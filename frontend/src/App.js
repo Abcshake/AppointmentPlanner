@@ -115,18 +115,18 @@ function App() {
   return (
     <>
     <nav>
-      <AppBar position="relative">
+    <ThemeProvider theme={Theme}>
+      <AppBar position="relative" sx={{backgroundColor: "primary.other"}}>
         <Container maxWidth="xl">
           <ToolBar>
-            <ThemeProvider theme={Theme}>
-            <Container sx={{display: "flex", justifyContent: "center", color: "primary"}}>
-              <Button startIcon={<Diversity3Icon />} variant="contained" component={Link} to={ROUTES.CONTACTS}>Contacts</Button>
-              <Button startIcon={<CalendarMonthIcon />} variant="contained" component={Link} to={ROUTES.APPOINTMENTS}>Appointments</Button>
+            <Container sx={{display: "flex", justifyContent: "center"}}>
+              <Button sx={{ backgroundColor: "primary.main"}}startIcon={<Diversity3Icon />} variant="contained" component={Link} to={ROUTES.CONTACTS}>Contacts</Button>
+              <Button sx={{  backgroundColor: "primary.main"}}startIcon={<CalendarMonthIcon />} variant="contained" component={Link} to={ROUTES.APPOINTMENTS}>Appointments</Button>
             </Container>
-            </ThemeProvider>
           </ToolBar>
         </Container>
       </AppBar>
+    </ThemeProvider>
       </nav>
       <main>
         <Switch>

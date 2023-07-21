@@ -58,7 +58,7 @@ export const ContactForm = (props) => {
          placeholder="Contact email">
          </input>
         <ThemeProvider theme={Theme}>
-          <Button type="submit" value="submit"  variant="contained" fullWidth= "true" sx={{backgroundColor: "primary.main", color: "white"}}>Submit</Button>
+          <Button type="submit" value="submit"  variant="contained" fullWidth= "true" sx={{backgroundColor: "primary.other", color: "white"}}>Submit</Button>
         </ThemeProvider>
       </form>
     </div>

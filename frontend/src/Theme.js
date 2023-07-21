@@ -4,11 +4,9 @@ export const Theme = createTheme ({
   palette: {
     mode: 'light',
     primary: {
-      main: '#7493D6',
-      other: "#99faff"
+      main: '#DAF0EE',
+      other: "#9DB5B2",
     },
-    secondary: {
-      main: '#E29842',
-    },
+    
   },
 });

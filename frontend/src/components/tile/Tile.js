@@ -46,19 +46,19 @@ useEffect(() => {
 return (
   <div>
     <Grid container direction="column">
-    <Container  sx={{gap: 2}}>
+    <Container>
     <ThemeProvider theme={Theme}>
-        <Card sx={{ backgroundColor: "primary.main" }}>
+        <Card sx={{ direction: "flex", backgroundColor: "primary.main" , padding: "10px", margin:"10px"}}>
         {Object.values(tile).map((tile) => (
           <Typography variant="body2" >
           {tile}
         </Typography>
       ))}
-        </Card>
-  <CardActions sx={{ backgroundColor: "primary.other" }}>
-    <Button size="medium" onClick={handleDelete}>Delete</Button>
-    <Button size="medium" onClick={handleUpdate}>Update</Button>
-  </CardActions>
+    </Card>
+        <CardActions sx={{ backgroundColor: "primary.other" }}>
+          <Button size="medium" onClick={handleDelete}>Delete</Button>
+          <Button size="medium" onClick={handleUpdate}>Update</Button>
+        </CardActions>
   </ThemeProvider>
   </Container>
 </Grid>
