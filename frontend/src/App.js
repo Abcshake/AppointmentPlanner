@@ -4,6 +4,7 @@ import { useState  } from "react";
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
 import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 import { UpdateContactForm } from "./components/updateForm/updateContactForm";
+import  CustomModal from "./Modal";
 import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import ToolBar from '@mui/material/Toolbar';
@@ -114,6 +115,7 @@ function App() {
   
   return (
     <>
+    <CustomModal />
     <nav>
     <ThemeProvider theme={Theme}>
       <AppBar position="relative" sx={{backgroundColor: "primary.other"}}>
