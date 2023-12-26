@@ -4,6 +4,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
 
 const style = {
     position: 'absolute',
@@ -25,13 +26,21 @@ const handleClose = () => {
 }
   return (
     <Modal
-      isOpen={isOpen} 
+      open={isOpen} 
       contentLabel="Example Modal"
     >
       <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Welcome to the Appointment App!
           </Typography>
+          <Player
+                autoplay
+                loop
+                src="https://lottie.host/a48545f2-c308-4d76-812e-ac61139cef55/uwlTeVYW9i.json"
+                style={{ height: '300px', width: '300px' }}
+                >
+                <Controls visible={false} buttons={['play', 'repeat', 'frame', 'debug']} />
+            </Player>
           <Button onClick={handleClose}>Continue</Button>
       </Box>  
     </Modal>
