@@ -18,7 +18,7 @@ const style = {
     p: 4,
   };
 
-const CustomModal = () => {
+export const CustomModal = () => {
 const [isOpen, SetIsOpen] = useState(true);
 
 const handleClose = () => {
@@ -46,5 +46,3 @@ const handleClose = () => {
     </Modal>
   );
 };
-
-export default CustomModal;
